@@ -1,0 +1,42 @@
+/* * {
+    border: 1px solid red;
+} */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #78CCCB;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container {
+    background-color: #ff5e5b;
+    padding: 100px;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #D8D8D8;
+    width: 700px;
+    height: 500px;
+}
+
+.unit {
+    border: 1px solid grey;
+    flex: 1 0 auto;
+    /* height: 30px; */
+    /* width: 30px; */
+}

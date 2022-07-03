@@ -82,3 +82,13 @@ h1 {
     align-items: center;
     border-radius: 0 0 50px 50px;
 }
+
+.reset {
+    border: 2px solid transparent;
+    border-radius: 15px;
+    padding: 8px 16px;
+}
+
+.reset:hover {
+    border-color: black;
+}

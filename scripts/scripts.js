@@ -1,16 +1,14 @@
-function createSquares(number) {
+function createSquares(units) {
     const grid = document.querySelector('.grid');
-    let divWidth = grid.offsetWidth / number;
+    let divWidth = grid.offsetWidth / units;
     console.log(divWidth);
-    let divHeight = grid.offsetHeight / number;
 
-    for (let i = 0; i < number; i++) {
+    for (let i = 0; i < (units*units); i++) {
         const div = document.createElement('div');
         div.className = 'unit';
-        // div.style.width = `${divWidth}px`;
-        // div.style.height = `${divHeight}px`;
+        div.style.width = `${divWidth}px`;
         grid.appendChild(div);
     }
 }
 
-createSquares(100);
+createSquares(16);

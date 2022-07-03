@@ -37,7 +37,22 @@ body {
 .frame-top,
 .frame-bottom {
     width: 900px;
-    height: 75px;
+    height: 100px;
+}
+
+.frame-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px 50px 0 0;
+}
+
+h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 50px;
+    text-align: center;
+    color: #FFFF66;
+    margin: 0;
 }
 
 .frame-middle {
@@ -59,4 +74,11 @@ body {
 
 .unit {
     border: 1px solid grey;
+}
+
+.frame-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 50px 50px;
 }

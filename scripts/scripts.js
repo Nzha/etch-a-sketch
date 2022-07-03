@@ -22,7 +22,8 @@ units.forEach(unit => unit.addEventListener('click', (e) => {
 let isHolding = false;
 
 //  Allows changing background color while holding mouse down
-units.forEach(unit => unit.addEventListener('mousedown', () => {
+units.forEach(unit => unit.addEventListener('mousedown', (e) => {
+    e.preventDefault();
     isHolding = true;
 }));
 units.forEach(unit => unit.addEventListener('mousemove', (e) => {
@@ -33,3 +34,7 @@ units.forEach(unit => unit.addEventListener('mousemove', (e) => {
 units.forEach(unit => unit.addEventListener('mouseup', (e) => {
     isHolding = false;
 }));
+
+const reset = document.querySelector('.reset')
+
+reset.addEventListener('click', () => window.location.reload());

@@ -27,10 +27,26 @@ body {
     align-items: center;
 }
 
-
-.container {
+.frame-top,
+.frame-left,
+.frame-right,
+.frame-bottom {
     background-color: #ff5e5b;
-    padding: 100px;
+}
+
+.frame-top,
+.frame-bottom {
+    width: 900px;
+    height: 75px;
+}
+
+.frame-middle {
+    display: flex;
+}
+
+.frame-left,
+.frame-right {
+    width: 100px;
 }
 
 .grid {

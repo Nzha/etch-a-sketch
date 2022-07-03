@@ -1,7 +1,6 @@
 function createSquares(units) {
     const grid = document.querySelector('.grid');
     let divWidth = grid.offsetWidth / units;
-    console.log(divWidth);
 
     for (let i = 0; i < (units*units); i++) {
         const div = document.createElement('div');
@@ -12,3 +11,11 @@ function createSquares(units) {
 }
 
 createSquares(16);
+
+const units = document.querySelectorAll('.unit');
+
+units.forEach(unit => unit.addEventListener('mouseover', sketch));
+
+function sketch(e) {
+    e.target.style.backgroundColor = 'black';
+}

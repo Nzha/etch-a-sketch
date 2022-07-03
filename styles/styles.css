@@ -33,20 +33,12 @@ body {
     padding: 100px;
 }
 
-/* .grid {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #D8D8D8;
-    width: 700px;
-    height: 500px;
-} */
-
 .grid {
+    display: flex;
+    flex-wrap: wrap;
     background-color: #D8D8D8;
     width: 700px;
     height: 500px;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .unit {

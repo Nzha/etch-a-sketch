@@ -10,12 +10,26 @@ function createSquares(units) {
     }
 }
 
-createSquares(16);
+createSquares(32);
 
 const units = document.querySelectorAll('.unit');
 
-units.forEach(unit => unit.addEventListener('mouseover', sketch));
-
-function sketch(e) {
+// Allows changing background color with a click
+units.forEach(unit => unit.addEventListener('click', (e) => {
     e.target.style.backgroundColor = 'black';
-}
+}));
+
+let isHolding = false;
+
+//  Allows changing background color while holding mouse down
+units.forEach(unit => unit.addEventListener('mousedown', () => {
+    isHolding = true;
+}));
+units.forEach(unit => unit.addEventListener('mousemove', (e) => {
+    if (isHolding === true) {
+        e.target.style.backgroundColor = 'black';
+    }
+}));
+units.forEach(unit => unit.addEventListener('mouseup', (e) => {
+    isHolding = false;
+}));

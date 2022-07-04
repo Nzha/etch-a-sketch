@@ -28,12 +28,16 @@ createSquares(slider.value);
 // const units = document.getElementsByClassName('unit');
 // console.log(units);
 
-slider.addEventListener('mouseup', () => {
-    const units = document.querySelectorAll('.unit');
-    units.forEach(unit => unit.remove());
-    createSquares(slider.value);
-    drawing();
-});
+function gridSize() {
+    slider.addEventListener('mouseup', () => {
+        const units = document.querySelectorAll('.unit');
+        units.forEach(unit => unit.remove());
+        createSquares(slider.value);
+        drawing();
+    });
+}
+
+gridSize();
 
 function drawing() {
     const units = document.querySelectorAll('.unit');

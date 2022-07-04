@@ -1,3 +1,14 @@
+const slider = document.querySelector('#grid-range');
+const sliderOutput = document.querySelector('.grid-size .text');
+
+// Display the default slider value
+sliderOutput.textContent = `${slider.value}x${slider.value}`;
+
+// Update the slider value each time it is changed
+slider.oninput = function() {
+    sliderOutput.textContent = `${this.value}x${this.value}`;
+}
+
 function createSquares(units) {
     const grid = document.querySelector('.grid');
     let divWidth = grid.offsetWidth / units;
@@ -10,42 +21,46 @@ function createSquares(units) {
     }
 }
 
-createSquares(32);
+createSquares(slider.value);
 
-const units = document.querySelectorAll('.unit');
+// const units = document.querySelectorAll('.unit');
+// const units = Array.from(document.getElementsByClassName('unit'));
+// const units = document.getElementsByClassName('unit');
+// console.log(units);
 
-// Allows drawing with a click
-units.forEach(unit => unit.addEventListener('click', (e) => {
-    e.target.style.backgroundColor = 'black';
-}));
+slider.addEventListener('mouseup', () => {
+    const units = document.querySelectorAll('.unit');
+    units.forEach(unit => unit.remove());
+    createSquares(slider.value);
+    drawing();
+});
 
-let isHolding = false;
+function drawing() {
+    const units = document.querySelectorAll('.unit');
+    let isHolding = false;
 
-//  Allows drawing while holding mouse down
-units.forEach(unit => unit.addEventListener('mousedown', (e) => {
-    e.preventDefault();
-    isHolding = true;
-}));
-units.forEach(unit => unit.addEventListener('mousemove', (e) => {
-    if (isHolding === true) {
+    // Allows drawing with a click
+    units.forEach(unit => unit.addEventListener('click', (e) => {
         e.target.style.backgroundColor = 'black';
-    }
-}));
-units.forEach(unit => unit.addEventListener('mouseup', (e) => {
-    isHolding = false;
-}));
+    }));
+
+    //  Allows drawing while holding mouse down
+    units.forEach(unit => unit.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isHolding = true;
+    }));
+    units.forEach(unit => unit.addEventListener('mousemove', (e) => {
+        if (isHolding === true) {
+            e.target.style.backgroundColor = 'black';
+        }
+    }));
+    units.forEach(unit => unit.addEventListener('mouseup', (e) => {
+        isHolding = false;
+    }));
+}
+
+drawing();
 
 const clear = document.querySelector('.clear')
 
 clear.addEventListener('click', () => window.location.reload());
-
-const slider = document.querySelector('#grid-range');
-const sliderOutput = document.querySelector('.grid-size .text');
-
-// Display the default slider value
-sliderOutput.textContent = slider.value;
-
-// Update the slider value each time it is changed
-slider.oninput = function() {
-    sliderOutput.textContent = this.value;
-}

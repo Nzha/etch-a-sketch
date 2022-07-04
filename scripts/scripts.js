@@ -1,13 +1,11 @@
 const slider = document.querySelector('#grid-range');
 const sliderOutput = document.querySelector('.grid-size .text');
 
-// Display the default slider value
-sliderOutput.textContent = `${slider.value}x${slider.value}`;
-
-// Update the slider value each time it is changed
-slider.oninput = function() {
-    sliderOutput.textContent = `${this.value}x${this.value}`;
-}
+createSquares(slider.value);
+drawing();
+sliders();
+gridSize();
+clear();
 
 function createSquares(units) {
     const grid = document.querySelector('.grid');
@@ -21,12 +19,16 @@ function createSquares(units) {
     }
 }
 
-createSquares(slider.value);
+function sliders() {
 
-// const units = document.querySelectorAll('.unit');
-// const units = Array.from(document.getElementsByClassName('unit'));
-// const units = document.getElementsByClassName('unit');
-// console.log(units);
+    // Display the default slider value
+    sliderOutput.textContent = `${slider.value}x${slider.value}`;
+
+    // Update the slider value each time it is changed
+    slider.oninput = function() {
+        sliderOutput.textContent = `${this.value}x${this.value}`;
+    }
+}
 
 function gridSize() {
     slider.addEventListener('mouseup', () => {
@@ -36,8 +38,6 @@ function gridSize() {
         drawing();
     });
 }
-
-gridSize();
 
 function drawing() {
     const units = document.querySelectorAll('.unit');
@@ -63,8 +63,7 @@ function drawing() {
     }));
 }
 
-drawing();
-
-const clear = document.querySelector('.clear')
-
-clear.addEventListener('click', () => window.location.reload());
+function clear() {
+    const clear = document.querySelector('.clear')
+    clear.addEventListener('click', () => window.location.reload());
+}

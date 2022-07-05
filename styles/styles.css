@@ -101,6 +101,14 @@ h1 {
 
 .frame-bottom-right {
     display: flex;
+    gap: 30px;
+}
+
+.display-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2px;
 }
 
 .grid-size {

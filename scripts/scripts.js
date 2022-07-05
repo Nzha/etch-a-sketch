@@ -3,8 +3,9 @@ const sliderOutput = document.querySelector('.grid-size .text');
 
 createSquares(slider.value);
 drawing();
+gridDisplay()
 sliders();
-gridSize();
+gridResize();
 clear();
 
 function createSquares(units) {
@@ -17,26 +18,6 @@ function createSquares(units) {
         div.style.width = `${divWidth}px`;
         grid.appendChild(div);
     }
-}
-
-function sliders() {
-
-    // Display the default slider value
-    sliderOutput.textContent = `${slider.value}x${slider.value}`;
-
-    // Update the slider value each time it is changed
-    slider.oninput = function() {
-        sliderOutput.textContent = `${this.value}x${this.value}`;
-    }
-}
-
-function gridSize() {
-    slider.addEventListener('mouseup', () => {
-        const units = document.querySelectorAll('.unit');
-        units.forEach(unit => unit.remove());
-        createSquares(slider.value);
-        drawing();
-    });
 }
 
 function drawing() {
@@ -66,4 +47,43 @@ function drawing() {
 function clear() {
     const clear = document.querySelector('.clear')
     clear.addEventListener('click', () => window.location.reload());
+}
+
+function gridDisplay() {
+    const gridButton = document.querySelector('#display-grid-radio');
+    const units = document.querySelectorAll('.unit');
+
+    gridButton.addEventListener('click', () => {
+        if (gridButton.checked) {
+            units.forEach(unit => {
+                unit.style.border = '1px solid grey';
+            });
+        } else {
+            units.forEach(unit => {
+                unit.style.border = 'none';
+            });
+        }
+    });
+}
+
+function sliders() {
+
+    // Display the default slider value
+    sliderOutput.textContent = `${slider.value}x${slider.value}`;
+
+    // Update the slider value each time it is changed
+    slider.oninput = function() {
+        sliderOutput.textContent = `${this.value}x${this.value}`;
+    }
+}
+
+function gridResize() {
+    slider.addEventListener('mouseup', (e) => {
+        e.preventDefault();
+        const units = document.querySelectorAll('.unit');
+        units.forEach(unit => unit.remove());
+        createSquares(slider.value);
+        drawing();
+        gridDisplay();
+    });
 }

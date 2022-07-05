@@ -1,5 +1,6 @@
 const slider = document.querySelector('#grid-range');
 const sliderOutput = document.querySelector('.grid-size .text');
+const gridButton = document.querySelector('#display-grid-radio');
 
 createSquares(slider.value);
 drawing();
@@ -50,7 +51,6 @@ function clear() {
 }
 
 function gridDisplay() {
-    const gridButton = document.querySelector('#display-grid-radio');
     const units = document.querySelectorAll('.unit');
 
     gridButton.addEventListener('click', () => {
@@ -85,5 +85,6 @@ function gridResize() {
         createSquares(slider.value);
         drawing();
         gridDisplay();
+        gridButton.checked = true;
     });
 }

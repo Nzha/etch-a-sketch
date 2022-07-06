@@ -90,7 +90,7 @@ h1 {
 }
 
 .pen-color,
-.background-color {
+.grid-background-color {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -134,7 +134,7 @@ h1 {
 
 /* Custom color pickers */
 #pen-color,
-#background-color {
+#grid-background-color {
     border-radius: 50%;
     height: 40px;
     width: 40px;
@@ -145,12 +145,12 @@ h1 {
 }
 
 #pen-color::-webkit-color-swatch-wrapper,
-#background-color::-webkit-color-swatch-wrapper {
+#grid-background-color::-webkit-color-swatch-wrapper {
     padding: 0; 
 }
 
 #pen-color::-webkit-color-swatch,
-#background-color::-webkit-color-swatch  {
+#grid-background-color::-webkit-color-swatch  {
     border: none;
     border-radius: 50%;
 }

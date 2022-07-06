@@ -6,6 +6,7 @@ let penColor = 'black';
 createSquares(slider.value);
 drawing();
 getPenColor();
+gridBackgroundColor()
 gridDisplay()
 sliders();
 gridResize();
@@ -50,8 +51,17 @@ function drawing() {
 function getPenColor() {
     const penColorPicker = document.querySelector('#pen-color');
 
-    penColorPicker.addEventListener('input', (e) => {
+    penColorPicker.addEventListener('input', () => {
         return penColor = penColorPicker.value;
+    })
+}
+
+function gridBackgroundColor() {
+    const grid = document.querySelector('.grid')
+    const gridColorPicker = document.querySelector('#grid-background-color');
+
+    gridColorPicker.addEventListener('input', () => {
+    grid.style.backgroundColor = gridColorPicker.value;
     })
 }
 

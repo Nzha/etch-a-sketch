@@ -1,9 +1,11 @@
 const slider = document.querySelector('#grid-range');
 const sliderOutput = document.querySelector('.grid-size .text');
 const gridButton = document.querySelector('#display-grid-radio');
+let penColor = 'black';
 
 createSquares(slider.value);
 drawing();
+getPenColor();
 gridDisplay()
 sliders();
 gridResize();
@@ -27,7 +29,7 @@ function drawing() {
 
     // Allows drawing with a click
     units.forEach(unit => unit.addEventListener('click', (e) => {
-        e.target.style.backgroundColor = 'black';
+        e.target.style.backgroundColor = penColor;
     }));
 
     //  Allows drawing while holding mouse down
@@ -37,12 +39,20 @@ function drawing() {
     }));
     units.forEach(unit => unit.addEventListener('mousemove', (e) => {
         if (isHolding === true) {
-            e.target.style.backgroundColor = 'black';
+            e.target.style.backgroundColor = penColor;
         }
     }));
     units.forEach(unit => unit.addEventListener('mouseup', (e) => {
         isHolding = false;
     }));
+}
+
+function getPenColor() {
+    const penColorPicker = document.querySelector('#pen-color');
+
+    penColorPicker.addEventListener('input', (e) => {
+        return penColor = penColorPicker.value;
+    })
 }
 
 function clear() {

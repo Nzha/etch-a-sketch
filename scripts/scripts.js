@@ -5,6 +5,7 @@ const penColorPicker = document.querySelector('#pen-color');
 const gridColorPicker = document.querySelector('#grid-background-color');
 const rainbowButton = document.querySelector('#rainbow-mode-radio');
 const clearButton = document.querySelector('.clear')
+const eraserButton = document.querySelector('#eraser-radio');
 const gridButton = document.querySelector('#display-grid-radio');
 const slider = document.querySelector('#grid-range');
 const sliderOutput = document.querySelector('.grid-size .text');
@@ -15,6 +16,7 @@ drawing();
 penColorPicker.addEventListener('input', getPenColor);
 gridColorPicker.addEventListener('input', () => grid.style.backgroundColor = gridColorPicker.value);
 clearButton.addEventListener('click', clear);
+eraserButton.addEventListener('click', erase);
 gridButton.addEventListener('click', gridLines);
 slider.addEventListener('mouseup', gridResize);
 
@@ -58,6 +60,7 @@ function drawing(penColor='black') {
 
 function getPenColor() {
     rainbowButton.checked = false;
+    eraserButton.checked = false;
     drawing(penColorPicker.value);
 }
 
@@ -71,6 +74,12 @@ function clear() {
     createGrid(slider.value);
     drawing(penColorPicker.value);
     gridLines();
+}
+
+function erase() {
+    if (eraserButton.checked) {
+        drawing(grid.style.backgroundColor);
+    }
 }
 
 function gridLines() {

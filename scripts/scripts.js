@@ -18,6 +18,10 @@ clearButton.addEventListener('click', clear);
 gridButton.addEventListener('click', gridLines);
 slider.addEventListener('mouseup', gridResize);
 
+let mouseDown = false
+document.body.addEventListener('mousedown', () => mouseDown = true);
+document.body.addEventListener('mouseup', () => mouseDown = false);
+
 // Set the slider thumb to the correct emplacement, display the default value, and update the value when changed
 slider.value = `${DEFAULT_GRID_SIZE}`;
 sliderOutput.textContent = `${DEFAULT_GRID_SIZE}x${DEFAULT_GRID_SIZE}`;
@@ -35,10 +39,6 @@ function createGrid(size) {
     }
 }
 
-let mouseDown = false
-document.body.addEventListener('mousedown', () => mouseDown = true);
-document.body.addEventListener('mouseup', () => mouseDown = false);
-
 function drawing(penColor='black') {
     const units = document.querySelectorAll('.unit');
 
@@ -54,7 +54,6 @@ function drawing(penColor='black') {
             e.target.style.backgroundColor = penColor;
         }
     }
-
 }
 
 function getPenColor() {
@@ -70,8 +69,7 @@ function getRainbowColor() {
 function clear() {
     grid.innerHTML = '';
     createGrid(slider.value);
-    drawing();
-    getPenColor();
+    drawing(penColorPicker.value);
     gridLines();
 }
 

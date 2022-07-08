@@ -86,6 +86,7 @@ h1 {
 
 .frame-bottom-left {
     display: flex;
+    justify-content: flex-end;
     gap: 30px;
 }
 
@@ -96,6 +97,14 @@ h1 {
     align-items: center;
     text-align: center;
     gap: 5px;
+}
+
+.rainbow-mode {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    gap: 2px;
 }
 
 .clear {
@@ -110,11 +119,12 @@ h1 {
 
 .frame-bottom-left,
 .frame-bottom-right {
-    width: 200px;
+    width: 300px;
 }
 
 .frame-bottom-right {
     display: flex;
+    justify-content: flex-start;
     gap: 30px;
 }
 

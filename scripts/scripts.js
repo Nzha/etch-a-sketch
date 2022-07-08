@@ -79,7 +79,15 @@ function getRainbowColor() {
 
 function clear() {
     const clear = document.querySelector('.clear')
-    clear.addEventListener('click', () => window.location.reload());
+    clear.addEventListener('click', () => {
+        const units = document.querySelectorAll('.unit');
+        units.forEach(unit => unit.remove());
+        createSquares(slider.value);
+        drawing();
+        getPenColor();
+        gridBackgroundColor();
+        gridDisplay();
+    });
 }
 
 function gridDisplay() {

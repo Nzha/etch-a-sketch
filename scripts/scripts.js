@@ -1,7 +1,6 @@
 const slider = document.querySelector('#grid-range');
 const sliderOutput = document.querySelector('.grid-size .text');
 const gridButton = document.querySelector('#display-grid-radio');
-// let penColor = 'black';
 
 createSquares(slider.value);
 drawing();
@@ -60,7 +59,6 @@ function getPenColor() {
     const penColorPicker = document.querySelector('#pen-color');
 
     penColorPicker.addEventListener('input', () => {
-        // return penColor = penColorPicker.value;
         drawing(penColorPicker.value);
     })
 }

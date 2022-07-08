@@ -70,11 +70,16 @@ function getRainbowColor() {
     return randomColor = rainbowColors[Math.floor(Math.random() * rainbowColors.length)]
 }
 
-function clear() {
+function resetGrid() {
     grid.innerHTML = '';
     eraserButton.checked = false
     createGrid(slider.value);
     drawing(penColorPicker.value);
+}
+
+// Clear and recreate grid but keep grid line toggle in memory
+function clear() {
+    resetGrid();
     gridLines();
 }
 
@@ -100,11 +105,9 @@ function gridLines() {
     }
 }
 
+// Clear and recreate grid with grid lines on
 function gridResize(e) {
     e.preventDefault();
-    grid.innerHTML = '';
-    eraserButton.checked = false
+    resetGrid();
     gridButton.checked = true;
-    createGrid(slider.value);
-    drawing(penColorPicker.value);
 }

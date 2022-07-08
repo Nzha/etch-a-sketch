@@ -1,12 +1,13 @@
 const slider = document.querySelector('#grid-range');
 const sliderOutput = document.querySelector('.grid-size .text');
 const gridButton = document.querySelector('#display-grid-radio');
-let penColor = 'black';
+// let penColor = 'black';
 
 createSquares(slider.value);
 drawing();
 getPenColor();
 gridBackgroundColor()
+rainbowMode()
 gridDisplay()
 sliders();
 gridResize();
@@ -24,13 +25,18 @@ function createSquares(units) {
     }
 }
 
-function drawing() {
+function drawing(penColor='black') {
     const units = document.querySelectorAll('.unit');
+    const rainbowButton = document.querySelector('#rainbow-mode-radio');
     let isHolding = false;
 
     // Allows drawing with a click
     units.forEach(unit => unit.addEventListener('click', (e) => {
-        e.target.style.backgroundColor = penColor;
+        if (rainbowButton.checked) {
+            e.target.style.backgroundColor = getRainbowColor()
+        } else {
+            e.target.style.backgroundColor = penColor;
+        }
     }));
 
     //  Allows drawing while holding mouse down
@@ -39,7 +45,9 @@ function drawing() {
         isHolding = true;
     }));
     units.forEach(unit => unit.addEventListener('mousemove', (e) => {
-        if (isHolding === true) {
+        if (isHolding === true && rainbowButton.checked) {
+            e.target.style.backgroundColor = getRainbowColor();
+        } else if (isHolding === true) {
             e.target.style.backgroundColor = penColor;
         }
     }));
@@ -52,7 +60,8 @@ function getPenColor() {
     const penColorPicker = document.querySelector('#pen-color');
 
     penColorPicker.addEventListener('input', () => {
-        return penColor = penColorPicker.value;
+        // return penColor = penColorPicker.value;
+        drawing(penColorPicker.value);
     })
 }
 
@@ -63,6 +72,11 @@ function gridBackgroundColor() {
     gridColorPicker.addEventListener('input', () => {
     grid.style.backgroundColor = gridColorPicker.value;
     })
+}
+
+function getRainbowColor() {
+    const rainbowColors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+    return randomColor = rainbowColors[Math.floor(Math.random() * rainbowColors.length)]
 }
 
 function clear() {

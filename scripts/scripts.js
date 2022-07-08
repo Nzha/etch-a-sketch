@@ -15,6 +15,7 @@ drawing();
 
 penColorPicker.addEventListener('input', getPenColor);
 gridColorPicker.addEventListener('input', () => grid.style.backgroundColor = gridColorPicker.value);
+rainbowButton.addEventListener('click', () => eraserButton.checked = false);
 clearButton.addEventListener('click', clear);
 eraserButton.addEventListener('click', erase);
 gridButton.addEventListener('click', gridLines);
@@ -71,12 +72,15 @@ function getRainbowColor() {
 
 function clear() {
     grid.innerHTML = '';
+    eraserButton.checked = false
     createGrid(slider.value);
     drawing(penColorPicker.value);
     gridLines();
 }
 
 function erase() {
+    rainbowButton.checked = false;
+
     if (eraserButton.checked) {
         drawing(grid.style.backgroundColor);
     }
@@ -99,7 +103,8 @@ function gridLines() {
 function gridResize(e) {
     e.preventDefault();
     grid.innerHTML = '';
+    eraserButton.checked = false
+    gridButton.checked = true;
     createGrid(slider.value);
     drawing(penColorPicker.value);
-    gridButton.checked = true;
 }

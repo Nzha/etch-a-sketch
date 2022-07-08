@@ -1,12 +1,12 @@
+const rainbowButton = document.querySelector('#rainbow-mode-radio');
+const gridButton = document.querySelector('#display-grid-radio');
 const slider = document.querySelector('#grid-range');
 const sliderOutput = document.querySelector('.grid-size .text');
-const gridButton = document.querySelector('#display-grid-radio');
 
 createSquares(slider.value);
 drawing();
 getPenColor();
 gridBackgroundColor()
-rainbowMode()
 gridDisplay()
 sliders();
 gridResize();
@@ -26,7 +26,6 @@ function createSquares(units) {
 
 function drawing(penColor='black') {
     const units = document.querySelectorAll('.unit');
-    const rainbowButton = document.querySelector('#rainbow-mode-radio');
     let isHolding = false;
 
     // Allows drawing with a click
@@ -59,6 +58,7 @@ function getPenColor() {
     const penColorPicker = document.querySelector('#pen-color');
 
     penColorPicker.addEventListener('input', () => {
+        rainbowButton.checked = false;
         drawing(penColorPicker.value);
     })
 }
@@ -68,7 +68,7 @@ function gridBackgroundColor() {
     const gridColorPicker = document.querySelector('#grid-background-color');
 
     gridColorPicker.addEventListener('input', () => {
-    grid.style.backgroundColor = gridColorPicker.value;
+        grid.style.backgroundColor = gridColorPicker.value;
     })
 }
 

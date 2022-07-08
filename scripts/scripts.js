@@ -23,11 +23,11 @@ slider.value = `${DEFAULT_GRID_SIZE}`;
 sliderOutput.textContent = `${DEFAULT_GRID_SIZE}x${DEFAULT_GRID_SIZE}`;
 slider.addEventListener('input', () => sliderOutput.textContent = `${slider.value}x${slider.value}`);
 
-function createGrid(units) {
+function createGrid(size) {
     const grid = document.querySelector('.grid');
-    let divWidth = grid.offsetWidth / units;
+    let divWidth = grid.offsetWidth / size;
 
-    for (let i = 0; i < (units*units); i++) {
+    for (let i = 0; i < (size*size); i++) {
         const div = document.createElement('div');
         div.className = 'unit';
         div.style.width = `${divWidth}px`;
@@ -35,34 +35,26 @@ function createGrid(units) {
     }
 }
 
+let mouseDown = false
+document.body.addEventListener('mousedown', () => mouseDown = true);
+document.body.addEventListener('mouseup', () => mouseDown = false);
+
 function drawing(penColor='black') {
     const units = document.querySelectorAll('.unit');
-    let isHolding = false;
 
-    // Allows drawing with a click
-    units.forEach(unit => unit.addEventListener('click', (e) => {
+    units.forEach(unit => unit.addEventListener('mouseover', changeColor));
+    units.forEach(unit => unit.addEventListener('mousedown', changeColor));
+
+    function changeColor(e) {
+        if (e.type === 'mouseover' && !mouseDown) return
+        e.preventDefault();
         if (rainbowButton.checked) {
             e.target.style.backgroundColor = getRainbowColor()
         } else {
             e.target.style.backgroundColor = penColor;
         }
-    }));
+    }
 
-    //  Allows drawing while holding mouse down
-    units.forEach(unit => unit.addEventListener('mousedown', (e) => {
-        e.preventDefault();
-        isHolding = true;
-    }));
-    units.forEach(unit => unit.addEventListener('mousemove', (e) => {
-        if (isHolding === true && rainbowButton.checked) {
-            e.target.style.backgroundColor = getRainbowColor();
-        } else if (isHolding === true) {
-            e.target.style.backgroundColor = penColor;
-        }
-    }));
-    units.forEach(unit => unit.addEventListener('mouseup', (e) => {
-        isHolding = false;
-    }));
 }
 
 function getPenColor() {

@@ -4,17 +4,18 @@ const grid = document.querySelector('.grid')
 const penColorPicker = document.querySelector('#pen-color');
 const gridColorPicker = document.querySelector('#grid-background-color');
 const rainbowButton = document.querySelector('#rainbow-mode-radio');
+const clearButton = document.querySelector('.clear')
 const gridButton = document.querySelector('#display-grid-radio');
 const slider = document.querySelector('#grid-range');
 const sliderOutput = document.querySelector('.grid-size .text');
 
-createSquares(DEFAULT_GRID_SIZE);
+createGrid(DEFAULT_GRID_SIZE);
 drawing();
-clear();
 
 penColorPicker.addEventListener('input', getPenColor);
 gridColorPicker.addEventListener('input', () => grid.style.backgroundColor = gridColorPicker.value);
-gridButton.addEventListener('click', gridDisplay);
+clearButton.addEventListener('click', clear);
+gridButton.addEventListener('click', gridLines);
 slider.addEventListener('mouseup', gridResize);
 
 // Set the slider thumb to the correct emplacement, display the default value, and update the value when changed
@@ -22,7 +23,7 @@ slider.value = `${DEFAULT_GRID_SIZE}`;
 sliderOutput.textContent = `${DEFAULT_GRID_SIZE}x${DEFAULT_GRID_SIZE}`;
 slider.addEventListener('input', () => sliderOutput.textContent = `${slider.value}x${slider.value}`);
 
-function createSquares(units) {
+function createGrid(units) {
     const grid = document.querySelector('.grid');
     let divWidth = grid.offsetWidth / units;
 
@@ -75,18 +76,14 @@ function getRainbowColor() {
 }
 
 function clear() {
-    const clear = document.querySelector('.clear')
-    clear.addEventListener('click', () => {
-        const units = document.querySelectorAll('.unit');
-        units.forEach(unit => unit.remove());
-        createSquares(slider.value);
-        drawing();
-        getPenColor();
-        gridDisplay();
-    });
+    grid.innerHTML = '';
+    createGrid(slider.value);
+    drawing();
+    getPenColor();
+    gridLines();
 }
 
-function gridDisplay() {
+function gridLines() {
     const units = document.querySelectorAll('.unit');
 
     if (gridButton.checked) {
@@ -103,7 +100,7 @@ function gridDisplay() {
 function gridResize(e) {
     e.preventDefault();
     grid.innerHTML = '';
-    createSquares(slider.value);
+    createGrid(slider.value);
     drawing(penColorPicker.value);
     gridButton.checked = true;
 }

@@ -1,3 +1,5 @@
+const DEFAULT_GRID_SIZE = 32;
+
 const grid = document.querySelector('.grid')
 const penColorPicker = document.querySelector('#pen-color');
 const gridColorPicker = document.querySelector('#grid-background-color');
@@ -6,7 +8,7 @@ const gridButton = document.querySelector('#display-grid-radio');
 const slider = document.querySelector('#grid-range');
 const sliderOutput = document.querySelector('.grid-size .text');
 
-createSquares(slider.value);
+createSquares(DEFAULT_GRID_SIZE);
 drawing();
 clear();
 
@@ -15,10 +17,9 @@ gridColorPicker.addEventListener('input', () => grid.style.backgroundColor = gri
 gridButton.addEventListener('click', gridDisplay);
 slider.addEventListener('mouseup', gridResize);
 
-// Display the default slider value
-sliderOutput.textContent = `${slider.value}x${slider.value}`;
-
-// Update the slider value each time it is changed
+// Set the slider thumb to the correct emplacement, display the default value, and update the value when changed
+slider.value = `${DEFAULT_GRID_SIZE}`;
+sliderOutput.textContent = `${DEFAULT_GRID_SIZE}x${DEFAULT_GRID_SIZE}`;
 slider.addEventListener('input', () => sliderOutput.textContent = `${slider.value}x${slider.value}`);
 
 function createSquares(units) {

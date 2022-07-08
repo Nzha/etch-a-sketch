@@ -1,3 +1,6 @@
+const grid = document.querySelector('.grid')
+const penColorPicker = document.querySelector('#pen-color');
+const gridColorPicker = document.querySelector('#grid-background-color');
 const rainbowButton = document.querySelector('#rainbow-mode-radio');
 const gridButton = document.querySelector('#display-grid-radio');
 const slider = document.querySelector('#grid-range');
@@ -5,12 +8,18 @@ const sliderOutput = document.querySelector('.grid-size .text');
 
 createSquares(slider.value);
 drawing();
-getPenColor();
-gridBackgroundColor()
-gridDisplay()
-sliders();
-gridResize();
 clear();
+
+penColorPicker.addEventListener('input', getPenColor);
+gridColorPicker.addEventListener('input', () => grid.style.backgroundColor = gridColorPicker.value);
+gridButton.addEventListener('click', gridDisplay);
+slider.addEventListener('mouseup', gridResize);
+
+// Display the default slider value
+sliderOutput.textContent = `${slider.value}x${slider.value}`;
+
+// Update the slider value each time it is changed
+slider.oninput = () => sliderOutput.textContent = `${slider.value}x${slider.value}`;
 
 function createSquares(units) {
     const grid = document.querySelector('.grid');
@@ -55,21 +64,8 @@ function drawing(penColor='black') {
 }
 
 function getPenColor() {
-    const penColorPicker = document.querySelector('#pen-color');
-
-    penColorPicker.addEventListener('input', () => {
-        rainbowButton.checked = false;
-        drawing(penColorPicker.value);
-    })
-}
-
-function gridBackgroundColor() {
-    const grid = document.querySelector('.grid')
-    const gridColorPicker = document.querySelector('#grid-background-color');
-
-    gridColorPicker.addEventListener('input', () => {
-        grid.style.backgroundColor = gridColorPicker.value;
-    })
+    rainbowButton.checked = false;
+    drawing(penColorPicker.value);
 }
 
 function getRainbowColor() {
@@ -85,7 +81,6 @@ function clear() {
         createSquares(slider.value);
         drawing();
         getPenColor();
-        gridBackgroundColor();
         gridDisplay();
     });
 }
@@ -93,38 +88,21 @@ function clear() {
 function gridDisplay() {
     const units = document.querySelectorAll('.unit');
 
-    gridButton.addEventListener('click', () => {
-        if (gridButton.checked) {
-            units.forEach(unit => {
-                unit.style.border = '1px solid grey';
-            });
-        } else {
-            units.forEach(unit => {
-                unit.style.border = 'none';
-            });
-        }
-    });
-}
-
-function sliders() {
-
-    // Display the default slider value
-    sliderOutput.textContent = `${slider.value}x${slider.value}`;
-
-    // Update the slider value each time it is changed
-    slider.oninput = function() {
-        sliderOutput.textContent = `${this.value}x${this.value}`;
+    if (gridButton.checked) {
+        units.forEach(unit => {
+            unit.style.border = '1px solid grey';
+        });
+    } else {
+        units.forEach(unit => {
+            unit.style.border = 'none';
+        });
     }
 }
 
-function gridResize() {
-    slider.addEventListener('mouseup', (e) => {
-        e.preventDefault();
-        const units = document.querySelectorAll('.unit');
-        units.forEach(unit => unit.remove());
-        createSquares(slider.value);
-        drawing();
-        gridDisplay();
-        gridButton.checked = true;
-    });
+function gridResize(e) {
+    e.preventDefault();
+    grid.innerHTML = '';
+    createSquares(slider.value);
+    drawing(penColorPicker.value);
+    gridButton.checked = true;
 }

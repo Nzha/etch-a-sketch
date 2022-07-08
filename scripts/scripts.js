@@ -19,7 +19,7 @@ slider.addEventListener('mouseup', gridResize);
 sliderOutput.textContent = `${slider.value}x${slider.value}`;
 
 // Update the slider value each time it is changed
-slider.oninput = () => sliderOutput.textContent = `${slider.value}x${slider.value}`;
+slider.addEventListener('input', () => sliderOutput.textContent = `${slider.value}x${slider.value}`);
 
 function createSquares(units) {
     const grid = document.querySelector('.grid');

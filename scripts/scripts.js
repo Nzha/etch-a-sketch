@@ -72,7 +72,7 @@ function getRainbowColor() {
 
 function resetGrid() {
     grid.innerHTML = '';
-    eraserButton.checked = false
+    eraserButton.checked = false;
     createGrid(slider.value);
     drawing(penColorPicker.value);
 }

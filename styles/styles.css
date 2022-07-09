@@ -37,6 +37,7 @@ body {
 
 .frame-top,
 .frame-bottom {
+    flex: 1 1 auto;
     width: 1100px;
     height: 100px;
 }

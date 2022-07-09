@@ -77,7 +77,7 @@ function resetGrid() {
     drawing(penColorPicker.value);
 }
 
-// Clear and recreate grid but keep grid line toggle in memory
+// Clear and recreate grid while keeping previous grid line toggle (on or off)
 function clear() {
     resetGrid();
     gridLines();

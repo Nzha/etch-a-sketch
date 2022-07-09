@@ -148,8 +148,8 @@ footer a {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 3px;
-    padding: 6px 0;
+    gap: 6px;
+    padding: 3px 0;
     text-decoration: none;
     color: black;
 }
